@@ -55,14 +55,14 @@ public class MutantDetector implements Detector {
         if (diagonalDownVisited[currentRow][currentColumn] )
             return false;
 
-        for (  int row = currentRow+1 , column = currentColumn+1 ; row < currentRow+mutantsProperties.getRequiredLenght()-1 ; row++ , column++){
+        for (  int row = currentRow+1 , column = currentColumn+1 ; row < currentRow+mutantsProperties.getRequiredLenght() ; row++ , column++){
             if (dnaMatrix[row][column] != currentChar) {
                 return false;
             }else{
                 diagonalDownVisited[row][column] = true;
             }
         }
-
+        System.out.println("diagonalDownVisited "+currentRow+"-"+currentColumn);
         return true;
     }
 
@@ -72,14 +72,14 @@ public class MutantDetector implements Detector {
         if ( diagonalUpVisited[currentRow][currentColumn])
             return false;
 
-        for (int row = currentRow-1 ,column = currentColumn+1 ; row > currentRow-mutantsProperties.getRequiredLenght()-1 ; row-- , column++){
+        for (int row = currentRow-1 ,column = currentColumn+1 ; row > currentRow-mutantsProperties.getRequiredLenght() ; row-- , column++){
             if ( dnaMatrix[row][column] != currentChar) {
                 return false;
             }else{
                 diagonalUpVisited[row][column]=true;
             }
         }
-
+        System.out.println("checkDiagonalUp "+currentRow+"-"+currentColumn);
         return true;
     }
 
@@ -98,6 +98,7 @@ public class MutantDetector implements Detector {
                 verticalVisited[row][currentColumn] = true;
             }
         }
+        System.out.println("checkVertical "+currentRow+"-"+currentColumn);
 
         return true;
     }
@@ -107,7 +108,7 @@ public class MutantDetector implements Detector {
     private boolean checkHorizontal(char[][] dnaMatrix, boolean[][] horizontalVisited, int currentRow, int currentColumn){
         char currentChar = dnaMatrix[currentRow][currentColumn];
 
-        if (!horizontalVisited[currentRow][currentColumn])
+        if (horizontalVisited[currentRow][currentColumn])
             return false ;
 
         horizontalVisited[currentRow][currentColumn]=true;
@@ -119,16 +120,17 @@ public class MutantDetector implements Detector {
                 horizontalVisited[currentRow][column] = true;
             }
         }
+        System.out.println("horizontal "+currentRow+"-"+currentColumn);
 
         return true;
     }
 
 
     private boolean isValidSearch(int value , int size){
-       return value + mutantsProperties.getRequiredLenght() < size ;
+       return value + mutantsProperties.getRequiredLenght() <= size ;
     }
 
     private boolean isValidSearchUp(int value ){
-        return value - mutantsProperties.getRequiredLenght() > 0 ;
+        return value+1 - mutantsProperties.getRequiredLenght() >= 0 ;
     }
 }

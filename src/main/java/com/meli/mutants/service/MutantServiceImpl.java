@@ -1,6 +1,6 @@
 package com.meli.mutants.service;
 
-import com.meli.mutants.controller.Validator.ChainValidator;
+import com.meli.mutants.controller.Validator.DnaValidator;
 import com.meli.mutants.controller.detector.Detector;
 import com.meli.mutants.controller.dto.request.MutantRequest;
 
@@ -18,7 +18,7 @@ import java.util.Optional;
 @Service
 public class MutantServiceImpl implements  MutantService {
 
-   @Autowired private ChainValidator validator ;
+   @Autowired private DnaValidator validator ;
 
    @Autowired private Detector mutantDetector;
 
@@ -30,7 +30,7 @@ public class MutantServiceImpl implements  MutantService {
     @Override
     public Boolean isMutant(MutantRequest dna)  {
 
-            if(!isValidDNA(dna))
+            if(!validator.isValidDna(dna))
                 return false ;
 
             String dnaHuman = String.join("-",dna.getDna());
@@ -47,18 +47,6 @@ public class MutantServiceImpl implements  MutantService {
             }
     }
 
-    private boolean isValidDNA(MutantRequest dna)  {
-        try {
-            for (int  j = 0 ; j< dna.getDna().size() ;j++){
-                if (!validator.validate(dna.getDna().get(j))){
-                    return false;
-                }
-            }}catch (MutantValidatorException e){
-            logger.error(e.getMessage());
-            return false;
-        }
-        return  true;
-    }
 
     private char[][] dnaToMatrix(MutantRequest dna){
 

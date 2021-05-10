@@ -2,10 +2,13 @@ package com.meli.mutants.config;
 
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.stereotype.Component;
 
-@Data
+@Setter
+@Getter
 @Component
 @ConfigurationProperties("mutant")
 public class MutantProperties {

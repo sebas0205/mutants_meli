@@ -1,15 +1,12 @@
 package com.meli.mutants.model;
 
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
 @Entity
-@Data
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
@@ -25,5 +22,14 @@ public class Human {
     @Column( name = "mutant")
     private boolean isMutant;
 
+    @Override
+    public boolean equals(Object o){
+        if (o instanceof  Human){
+            return this.dna.equals(((Human) o).getDna());
+        }else{
+            return false;
+        }
+
+    }
 
 }

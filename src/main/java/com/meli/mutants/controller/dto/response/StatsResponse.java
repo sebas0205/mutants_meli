@@ -4,11 +4,13 @@ package com.meli.mutants.controller.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.math.BigDecimal;
 
-@Data
+@Setter
+@Getter
 public class StatsResponse {
 
 
