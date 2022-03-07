@@ -47,7 +47,7 @@ El servivio retornará un estado 200 o 403 según el caso
 
 - Servicio de stats :
 
-Se de realizar una petición GET a la url :
+Se debe realizar una petición GET a la url :
 https://ec2-3-91-20-241.compute-1.amazonaws.com:8081/stats
 
 El servicio retornará un objeto json de la siguiente estructura :
